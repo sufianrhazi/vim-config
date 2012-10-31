@@ -1,0 +1,90 @@
+set nocompatible
+
+" General usability
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=8
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" Bundles
+Bundle "tpope/vim-fugitive"
+Bundle "scrooloose/syntastic"
+Bundle "Shougo/neocomplcache"
+Bundle "Shougo/vimproc"
+Bundle "godlygeek/tabular"
+Bundle "kien/ctrlp.vim"
+Bundle "vim-scripts/JSON.vim"
+Bundle "tpope/vim-markdown"
+Bundle "altercation/vim-colors-solarized"
+Bundle "nono/vim-handlebars"
+Bundle "nelstrom/vim-markdown-preview"
+
+filetype plugin indent on
+
+
+" Display options
+set ruler
+set showcmd
+set showmode
+set hlsearch
+set ignorecase
+set smartcase
+set t_Co=256 " 256 colors, srsly
+let g:solarized_termcolors=256
+syntax enable
+colorscheme solarized
+set background=dark
+
+
+" Settings
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_enable_highlighting=1
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
+let g:syntastic_error_symbol='⚑'
+let g:syntastic_style_error_symbol='⚑'
+let g:syntastic_warning_symbol='»'
+let g:syntastic_style_warning_symbol='»'
+
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_auto_completion_start_length = 5
+
+let g:ctrlp_max_files = 0
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+let g:ctrlp_cache_dir = expand('~/.vim/tmp/ctrlpcache')
+
+
+
+"""
+" Standard mappings
+
+map ,gs :Git show <cword><CR>
+map ,gb :Gblame<CR>
+map ,h :nohls<CR>
+
+"""
+" Insert mappings
+
+
+
+"""
+" Visual mappings
+
+" Vertically align assignment operators
+vmap ,= :Tabularize /^[^=]*\zs=<CR>
+vmap ,: :Tabularize /^[^:]*\zs:<CR>
+vmap ,? :Tabularize /^[^=?:]*\zs[=?:]<CR>
+
+
+"""
+" Filetype mappings
+
+"au BufNewFile,BufRead *.hb set ft=html
