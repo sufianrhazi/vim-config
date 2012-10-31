@@ -24,6 +24,7 @@ Bundle "tpope/vim-markdown"
 Bundle "altercation/vim-colors-solarized"
 Bundle "nono/vim-handlebars"
 Bundle "nelstrom/vim-markdown-preview"
+Bundle "StanAngeloff/php.vim.git"
 
 filetype plugin indent on
 
