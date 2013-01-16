@@ -86,6 +86,7 @@ vmap ,= :Tabularize /^[^=]*\zs=<CR>
 vmap ,: :Tabularize /^[^:]*\zs:<CR>
 vmap ,? :Tabularize /^[^=?:]*\zs[=?:]<CR>
 vmap ,/ :Tabularize /^[^\/]*\zs\/<CR>
+vmap ,\| :Tabularize /\|<CR>
 
 
 """
