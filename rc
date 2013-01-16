@@ -69,7 +69,9 @@ let g:ctrlp_cache_dir = expand('~/.vim/tmp/ctrlpcache')
 
 map ,gs :Git show <cword><CR>
 map ,gb :Gblame<CR>
+map ,gd :Gdiff<CR>
 map ,h :nohls<CR>
+map ,ws :%s/ \+$//<CR>
 
 """
 " Insert mappings
@@ -83,9 +85,12 @@ map ,h :nohls<CR>
 vmap ,= :Tabularize /^[^=]*\zs=<CR>
 vmap ,: :Tabularize /^[^:]*\zs:<CR>
 vmap ,? :Tabularize /^[^=?:]*\zs[=?:]<CR>
+vmap ,/ :Tabularize /^[^\/]*\zs\/<CR>
 
 
 """
 " Filetype mappings
 
 "au BufNewFile,BufRead *.hb set ft=html
+au BufNewFile,BufRead SConstruct set ft=python
+
