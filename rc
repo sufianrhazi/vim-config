@@ -5,6 +5,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=8
+set backspace=2
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -15,16 +16,8 @@ Bundle 'gmarik/vundle'
 " Bundles
 Bundle "tpope/vim-fugitive"
 Bundle "scrooloose/syntastic"
-Bundle "Shougo/neocomplcache"
-Bundle "Shougo/vimproc"
 Bundle "godlygeek/tabular"
-Bundle "kien/ctrlp.vim"
-Bundle "vim-scripts/JSON.vim"
-Bundle "tpope/vim-markdown"
 Bundle "altercation/vim-colors-solarized"
-Bundle "nono/vim-handlebars"
-Bundle "nelstrom/vim-markdown-preview"
-Bundle "StanAngeloff/php.vim.git"
 
 filetype plugin indent on
 
@@ -62,7 +55,7 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 let g:ctrlp_cache_dir = expand('~/.vim/tmp/ctrlpcache')
 
-
+let g:syntastic_python_pylint_post_args="--disable=C0111,C0103,C0301,R0921"
 
 """
 " Standard mappings
@@ -76,6 +69,55 @@ map ,ws :%s/ \+$//<CR>
 """
 " Insert mappings
 
+imap `alpha α
+imap `beta β
+imap `gamma γ
+imap `Delta Δ
+imap `lambda λ
+imap `mu μ
+imap `pi π
+imap `Sigma Σ
+imap `Theta Θ
+imap `theta θ
+imap `Omega Ω
+
+imap `lquot “
+imap `rquot ”
+
+imap `uarr ↑
+imap `rarr →
+imap `darr ↓
+imap `larr ←
+imap `barr ↔
+
+imap `check ✓
+imap `cross ✗
+
+imap `copy ©
+imap `tm ™
+
+imap `cr ␍
+imap `lf ␊
+
+imap `degree °
+
+imap `info ℹ
+imap `warning ⚠
+
+imap `dagger †
+imap `doubledagger ‡
+
+imap `forall ∀
+imap `exists ∃
+
+imap `intersect ∩
+imap `union ∪
+imap `subset ⊂
+imap `element ∈
+
+imap `flat ♭
+imap `natural ♮
+imap `sharp ♯
 
 
 """
@@ -85,7 +127,7 @@ map ,ws :%s/ \+$//<CR>
 vmap ,= :Tabularize /^[^=]*\zs=<CR>
 vmap ,: :Tabularize /^[^:]*\zs:<CR>
 vmap ,? :Tabularize /^[^=?:]*\zs[=?:]<CR>
-vmap ,/ :Tabularize /^[^\/]*\zs\/<CR>
+vmap ,/ :Tabularize /^[^/]*\zs/<CR>
 vmap ,\| :Tabularize /\|<CR>
 
 
@@ -94,4 +136,6 @@ vmap ,\| :Tabularize /\|<CR>
 
 "au BufNewFile,BufRead *.hb set ft=html
 au BufNewFile,BufRead SConstruct set ft=python
+au BufNewFile,BufRead *.ts set ft=typescript
+au BufNewFile,BufRead *.md set ft=markdown
 

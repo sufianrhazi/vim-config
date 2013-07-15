@@ -1,0 +1,1 @@
+vmap ,{ :Tabularize /^[^{,}]*\zs[{,}]<CR>
