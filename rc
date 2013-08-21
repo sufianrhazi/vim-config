@@ -18,6 +18,15 @@ Bundle "tpope/vim-fugitive"
 Bundle "scrooloose/syntastic"
 Bundle "godlygeek/tabular"
 Bundle "altercation/vim-colors-solarized"
+Bundle "mileszs/ack.vim"
+Bundle "scrooloose/nerdtree"
+Bundle "tpope/vim-surround"
+Bundle "Shougo/neocomplcache"
+
+Bundle "dag/vim2hs"
+Bundle "eagletmt/ghcmod-vim"
+Bundle "lukerandall/haskellmode-vim"
+Bundle "ujihisa/neco-ghc"
 
 filetype plugin indent on
 
@@ -36,7 +45,7 @@ colorscheme solarized
 set background=dark
 
 
-" Settings
+" Syntastic Settings
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_enable_highlighting=1
@@ -55,7 +64,7 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 let g:ctrlp_cache_dir = expand('~/.vim/tmp/ctrlpcache')
 
-let g:syntastic_python_pylint_post_args="--disable=C0111,C0103,C0301,R0921"
+let g:syntastic_python_pylint_post_args="--disable=C0111,C0103,C0301,R0921,I0011,W0141"
 
 """
 " Standard mappings
@@ -115,6 +124,9 @@ imap `union ∪
 imap `subset ⊂
 imap `element ∈
 
+imap `emdash —
+imap `endash –
+
 imap `flat ♭
 imap `natural ♮
 imap `sharp ♯
@@ -136,6 +148,11 @@ vmap ,\| :Tabularize /\|<CR>
 
 "au BufNewFile,BufRead *.hb set ft=html
 au BufNewFile,BufRead SConstruct set ft=python
+au BufNewFile,BufRead *.scons set ft=python
 au BufNewFile,BufRead *.ts set ft=typescript
 au BufNewFile,BufRead *.md set ft=markdown
+au BufNewFile,BufRead *.tml set ft=htmldjango
 
+au BufNewFile,BufRead *.hs set colorcolumn=80
+au BufNewFile,BufRead *.hs map ,tt :GhcModType<CR>
+au BufNewFile,BufRead *.hs map ,tc :GhcModTypeClear<CR>
