@@ -74,6 +74,7 @@ map ,gb :Gblame<CR>
 map ,gd :Gdiff<CR>
 map ,h :nohls<CR>
 map ,ws :%s/ \+$//<CR>
+map ,nt :NERDTreeToggle<CR>
 
 """
 " Insert mappings
