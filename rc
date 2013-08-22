@@ -21,6 +21,7 @@ Bundle "altercation/vim-colors-solarized"
 Bundle "mileszs/ack.vim"
 Bundle "scrooloose/nerdtree"
 Bundle "tpope/vim-surround"
+Bundle "Shougo/vimproc.vim"
 Bundle "Shougo/neocomplcache"
 
 Bundle "dag/vim2hs"
