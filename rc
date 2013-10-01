@@ -56,6 +56,8 @@ NeoBundle "eagletmt/ghcmod-vim"
 NeoBundle "lukerandall/haskellmode-vim"
 NeoBundle "ujihisa/neco-ghc"
 
+let g:haddock_browser='true'
+
 
 filetype plugin indent on
 
@@ -95,7 +97,7 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 map ,b :Unite buffer<CR>
 map ,f :Unite file_rec/async<CR>
-map <C-p> :Unite file_rec/async<CR>
+map <C-p> :Unite -start-insert file_rec/async<CR>
 map ,/ :Unite grep:.<CR>
 
 
