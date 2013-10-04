@@ -56,7 +56,6 @@ NeoBundle "tpope/vim-surround"
 " haskell
 NeoBundle "dag/vim2hs"
 NeoBundle "eagletmt/ghcmod-vim"
-NeoBundle "lukerandall/haskellmode-vim"
 NeoBundle "ujihisa/neco-ghc"
 
 let g:haddock_browser='true'
