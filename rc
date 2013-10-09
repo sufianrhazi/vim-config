@@ -98,7 +98,9 @@ set ambiwidth=single
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-map ,b :Unite buffer<CR>
+map ,bb :Unite buffer<CR>
+map ,bh :bp<CR>
+map ,bl :bn<CR>
 map ,f :Unite file_rec/async<CR>
 map <C-p> :Unite -start-insert file_rec/async<CR>
 map ,/ :Unite grep:.<CR>
