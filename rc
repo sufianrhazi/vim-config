@@ -100,7 +100,11 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 map ,bb :Unite buffer<CR>
 map ,bh :bp<CR>
+map ,bp :bp<CR>
 map ,bl :bn<CR>
+map ,bn :bn<CR>
+map ,bc :bd<CR>
+map ,bd :bd<CR>
 map ,f :Unite file_rec/async<CR>
 map <C-p> :Unite -start-insert file_rec/async<CR>
 map ,/ :Unite grep:.<CR>
