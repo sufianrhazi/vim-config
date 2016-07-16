@@ -1,69 +1,10 @@
-set nocompatible
-
-
-" neobundle settings
-" ------------------
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-
-" bundles
-" -------
-
-" Shougo's stuff:
-
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/unite.vim'
-
-" git
-NeoBundle "tpope/vim-fugitive"
-
-" syntax
-NeoBundle "scrooloose/syntastic"
-
-" column
-NeoBundle "godlygeek/tabular"
-
-" color
-NeoBundle "altercation/vim-colors-solarized"
-
-" status line
-NeoBundle "bling/vim-airline"
-
-" ack
-NeoBundle "mileszs/ack.vim"
-
-" nerdtree
-NeoBundle "scrooloose/nerdtree"
-
-" surround
-NeoBundle "tpope/vim-surround"
-
-" haskell
-NeoBundle "dag/vim2hs"
-NeoBundle "eagletmt/ghcmod-vim"
-NeoBundle "ujihisa/neco-ghc"
-
-let g:haddock_browser='true'
-
-
+" Pathogen
+execute pathogen#infect()
 filetype plugin indent on
-
-NeoBundleCheck
 
 
 " General usability
@@ -91,66 +32,10 @@ syntax enable
 colorscheme solarized
 set background=dark
 set ambiwidth=single
+set conceallevel=2
 
-
-" unite options
-" -------------
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-map ,bb :Unite buffer<CR>
-map ,bh :bp<CR>
-map ,bp :bp<CR>
-map ,bl :bn<CR>
-map ,bn :bn<CR>
-map ,bc :bd<CR>
-map ,bd :bd<CR>
-map ,f :Unite file_rec/async<CR>
-map <C-p> :Unite -start-insert file_rec/async<CR>
-map ,/ :Unite grep:.<CR>
-
-
-"nnoremap <space>/ :Unite grep:.<cr>
-
-
-" neocomplete options
-" -------------------
-
-let g:acp_enableAtStartup = 0
-
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 4
-
-" key-mappings
-
-" <CR>: close popup and save indent
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return pumvisible() ? neocomplete#smart_close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backwaord char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-" Omni completion:
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Heavy omni completion:
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
+set spell
+au BufNewFile,BufRead * syn spell toplevel
 
 " airline Options
 " -----------------
@@ -180,7 +65,7 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 " Syntastic Options
 " -----------------
 
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_enable_signs=1
 let g:syntastic_enable_highlighting=1
 let g:syntastic_mode_map = { 'mode': 'active',
@@ -191,18 +76,19 @@ let g:syntastic_style_error_symbol='⚑'
 let g:syntastic_warning_symbol='»'
 let g:syntastic_style_warning_symbol='»'
 
-let g:syntastic_python_pylint_post_args="--disable=C0111,C0103,C0301,R0921,I0011,W0141"
-
 
 " Leader mappings
 " ---------------
 
-map ,gs :Git show <cword><CR>
-map ,gb :Gblame<CR>
-map ,gd :Gdiff<CR>
-map ,h :nohls<CR>
-map ,ws :%s/ \+$//<CR>
-map ,nt :NERDTreeToggle<CR>
+let mapleader=","
+map <Leader>gs :Git show <cword><CR>
+map <Leader>gb :Gblame<CR>
+map <Leader>gd :Gdiff<CR>
+map <Leader>h :nohls<CR>
+map <Leader>ws :%s/ \+$//<CR>
+map <Leader>bn :bn<CR>
+map <Leader>bp :bp<CR>
+map <Leader>bc :bc<CR>
 
 
 " Insert mappings
@@ -222,6 +108,7 @@ imap `Omega Ω
 
 imap `lquot “
 imap `rquot ”
+imap `quot ’
 
 imap `uarr ↑
 imap `rarr →
@@ -243,6 +130,8 @@ imap `degree °
 imap `info ℹ
 imap `warning ⚠
 
+imap `paragraph ¶
+imap `section §
 imap `dagger †
 imap `doubledagger ‡
 
@@ -266,11 +155,11 @@ imap `sharp ♯
 " ---------------
 
 " Tabular tools
-vmap ,= :Tabularize /^[^=]*\zs=<CR>
-vmap ,: :Tabularize /^[^:]*\zs:<CR>
-vmap ,? :Tabularize /^[^=?:]*\zs[=?:]<CR>
-vmap ,/ :Tabularize /^[^/]*\zs/<CR>
-vmap ,\| :Tabularize /\|<CR>
+vmap <Leader>= :Tabularize /^[^=]*\zs=<CR>
+vmap <Leader>: :Tabularize /^[^:]*\zs:<CR>
+vmap <Leader>? :Tabularize /^[^=?:]*\zs[=?:]<CR>
+vmap <Leader>/ :Tabularize /^[^/]*\zs/<CR>
+vmap <Leader>\| :Tabularize /\|<CR>
 
 
 " Filetype mappings
@@ -278,10 +167,6 @@ vmap ,\| :Tabularize /\|<CR>
 
 au BufNewFile,BufRead SConstruct set ft=python
 au BufNewFile,BufRead *.scons set ft=python
-au BufNewFile,BufRead *.ts set ft=typescript
 au BufNewFile,BufRead *.md set ft=markdown
-au BufNewFile,BufRead *.tml set ft=htmldjango
 
 au BufNewFile,BufRead *.hs set colorcolumn=80
-au BufNewFile,BufRead *.hs map ,tt :GhcModType<CR>
-au BufNewFile,BufRead *.hs map ,tc :GhcModTypeClear<CR>
