@@ -34,3 +34,9 @@
 [submodule "bundle/vim-flavored-markdown"]
 	path = bundle/vim-flavored-markdown
 	url = https://github.com/jtratner/vim-flavored-markdown.git
+[submodule "vim-jsx"]
+	path = bundle/vim-jsx
+	url = git@github.com:mxw/vim-jsx.git
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
